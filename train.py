@@ -84,6 +84,7 @@ class Trainer:
             generate_clusters=self.options.generate_clusters,   # generate new classification label
             level_clusters=self.options.level_cluster,
             voxel_size=self.options.voxel_size,  # voxel size of point cloud
+            seqs=self.options.train_seqs,
         )
 
         # Create network using the state dict of the pretrained encoder.
@@ -594,6 +595,9 @@ if __name__ == '__main__':
     # Voxel size for sparse conv
     parser.add_argument('--voxel_size', type=float, default=0.25,
                         help='Oxford 0.25 NCLT 0.30')
+
+    parser.add_argument('--train_seqs', nargs='+', default=None,
+                        help='dataset sequence names to train on. Defaults to the built-in split for the selected scene')
 
     options = parser.parse_args()
 

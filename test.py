@@ -64,6 +64,9 @@ if __name__ == '__main__':
 
     parser.add_argument('--voxel_size', type=float, default=0.25)
 
+    parser.add_argument('--test_seqs', nargs='+', default=None,
+                        help='dataset sequence names to test. Defaults to the built-in split for the selected scene')
+
 
     opt = parser.parse_args()
 
@@ -88,7 +91,8 @@ if __name__ == '__main__':
     testset = LiDARLocDataset(
         root_dir=scene_path,
         train=False,
-        voxel_size=voxel_size
+        voxel_size=voxel_size,
+        seqs=opt.test_seqs,
     )
 
 

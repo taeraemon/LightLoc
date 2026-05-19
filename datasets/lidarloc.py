@@ -54,7 +54,8 @@ class LiDARLocDataset(Dataset):
                  aug_translation=1,
                  generate_clusters=False,
                  level_clusters=25,
-                 voxel_size=0.25):
+                 voxel_size=0.25,
+                 seqs=None):
 
         # Only support Oxford and NCLT
         self.root_dir = root_dir
@@ -64,30 +65,28 @@ class LiDARLocDataset(Dataset):
         self.aug_rotation = aug_rotation
         self.aug_translation = aug_translation
         self.voxel_size = voxel_size
+        self.seqs = seqs
 
         # which dataset?
         self.scene = osp.split(root_dir)[-1]
         if self.scene == 'Oxford':
-            if self.train:
+            if self.seqs is not None:
+                seqs = self.seqs
+            elif self.train:
                 seqs = ['2019-01-11-14-02-26-radar-oxford-10k', '2019-01-14-12-05-52-radar-oxford-10k',
                         '2019-01-14-14-48-55-radar-oxford-10k', '2019-01-18-15-20-12-radar-oxford-10k']
             else:
-                # change test seqs
                 seqs = ['2019-01-15-13-06-37-radar-oxford-10k']
-                # seqs = ['2019-01-17-13-26-39-radar-oxford-10k']
-                # seqs = ['2019-01-17-14-03-00-radar-oxford-10k']
-                # seqs = ['2019-01-18-14-14-42-radar-oxford-10k']
 
             self.scene = 'QEOxford'  # If you use the QEOxford dataset, please uncomment this note
 
         elif self.scene == 'NCLT':
-            if self.train:
+            if self.seqs is not None:
+                seqs = self.seqs
+            elif self.train:
                 seqs = ['2012-01-22', '2012-02-02', '2012-02-18', '2012-05-11']
             else:
-                # seqs = ['2012-02-12']
-                # seqs = ['2012-02-19']
                 seqs = ['2012-03-31']
-                # seqs = ['2012-05-26']
         else:
             raise RuntimeError('Only support Oxford and NCLT!')
 

@@ -6,3 +6,6 @@ weight/
 
 # Ignore Logs
 log/
+
+# Ignore PyCache
+__pycache__/
