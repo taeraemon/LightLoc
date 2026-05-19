@@ -1,0 +1,8 @@
+# Ignore Environments
+.env
+
+# Ignore Weights
+weight/
+
+# Ignore Logs
+log/
