@@ -3,25 +3,14 @@
 - Environments
 
 ```
-recommend : 3.8, 1.11.0, 11.3
 python3 -m venv .env
 source .env/bin/activate
-```
 
-```
-pip install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit==11.3
-pip install openblas-devel # Install MinkowskiEngine
-pip uninstall setuptools -y
-pip install setuptools==69.5.1
-pip install -U git+https://github.com/NVIDIA/MinkowskiEngine -v --no-deps --install-option="--blas_include_dirs=${CONDA_PREFIX}/include" --install-option="--blas=openblas"
-pip install h5py pandas matplotlib tqdm transforms3d open3d
-```
-
-```
 pip install pip==22.2.1
 pip install setuptools==69.5.1 wheel ninja
 pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 \
     --extra-index-url https://download.pytorch.org/whl/cu113
+pip install h5py pandas matplotlib tqdm transforms3d open3d
 sudo apt update
 sudo apt install -y libopenblas-dev g++-9 gcc-9
 CC=gcc-9 CXX=g++-9 pip install -U git+https://github.com/NVIDIA/MinkowskiEngine -v --no-deps \
@@ -60,7 +49,7 @@ python nclt_process.py \
 https://drive.google.com/drive/folders/1IAPbppgy88fr3KEgcKHJHUvdC0q1TJTo
 ```
 
-- Make NCLT_pose_stats.txt (train하면 만드는거라 train 전에는 직접 만들어야함
+- Make NCLT_pose_stats.txt (train하면 만드는거라 train 전에는 직접 만들어야함. input 좌표 regularize 하는 용도?)
 
 ```
 python - <<'PY'
